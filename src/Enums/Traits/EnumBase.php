@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminx\Common\Enums\Traits;
+namespace Artisanbr\Goodies\Enums\Traits;
 
 trait EnumBase
 {
