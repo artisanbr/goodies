@@ -8,7 +8,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Artisanbr\\Goodies\\": "src/"
+            "ArtisanBR\\Goodies\\": "src/"
         }
     },
     "authors": [

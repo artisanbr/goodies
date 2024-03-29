@@ -1,6 +1,6 @@
 <?php
 
-namespace Artisanbr\Goodies\Enums\Traits;
+namespace ArtisanBR\Goodies\Enums\Traits;
 
 trait EnumToArray
 {
