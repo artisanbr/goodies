@@ -1,12 +1,13 @@
 <?php
 if (!function_exists("array_filter_recursive")) {
-    function array_filter_recursive(array &$array, ?callable $callback, int $mode = 0): void
+    function array_filter_recursive(array $array, ?callable $callback = null, int $mode = 0): array
     {
-        foreach ($array as &$value) {
+        foreach ($array as $key => $value) {
             if (is_array($value)) {
-                array_filter_recursive($value, $callback, $mode);
+                $array[$key] = array_filter_recursive($value, $callback, $mode);
             }
         }
-        $array = array_filter($array, $callback, $mode);
+
+        return array_filter($array, $callback, $mode);
     }
 }
