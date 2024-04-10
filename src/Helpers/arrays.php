@@ -4,7 +4,7 @@ if (!function_exists("array_filter_recursive")) {
     {
         foreach ($array as &$value) {
             if (is_array($value)) {
-                array_filter_recursive($value);
+                array_filter_recursive($value, $callback, $mode);
             }
         }
         $array = array_filter($array, $callback, $mode);
