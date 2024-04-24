@@ -27,7 +27,7 @@ class BladeComponentHelpers
             foreach ($groupNames as $groupName){
 
                 if (Str::startsWith($attributeName, $groupName)) {
-                    $filteredAttributeName = Str::substr($attributeName, strlen($groupName) + 1);
+                    $filteredAttributeName = Str::after($attributeName, $groupName);
                     $filteredAttributes[$filteredAttributeName] = $attributeValue;
                 }
             }
