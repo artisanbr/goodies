@@ -21,13 +21,12 @@ class BladeComponentHelpers
 
         $groupNames = collect($groupNames)->map(fn($name) => "{$name}-")->toArray();
 
-        foreach ($attributes->getAttributes() as $key => $value) {
+        foreach ($attributes->getAttributes() as $attributeName => $attributeValue) {
 
             foreach ($groupNames as $groupName){
-                if (Str::startsWith($key, $groupName)) {
-                    // Remove the prefix from the attribute key
-                    $filteredKey = str($key)->after($groupName);
-                    $filteredAttributes[$filteredKey] = $value;
+                if (Str::startsWith($attributeName, $groupName . '-')) {
+                    $filteredAttributeName = Str::substr($attributeName, strlen($groupName) + 1);
+                    $filteredAttributes[$filteredAttributeName] = $attributeValue;
                 }
             }
 
