@@ -22,11 +22,15 @@ class BladeComponentHelpers
         $groupNames = collect($groupNames)->map(fn($name) => "{$name}-")->toArray();
 
         foreach ($attributes->getAttributes() as $key => $value) {
-            if (Str::startsWith($key, $groupNames)) {
-                // Remove the prefix from the attribute key
-                $filteredKey = str($key)->replace($groupNames, '');
-                $filteredAttributes[$filteredKey] = $value;
+
+            foreach ($groupNames as $groupName){
+                if (Str::startsWith($key, $groupName)) {
+                    // Remove the prefix from the attribute key
+                    $filteredKey = str($key)->after($groupName);
+                    $filteredAttributes[$filteredKey] = $value;
+                }
             }
+
         }
 
         return new ComponentAttributeBag($filteredAttributes);
