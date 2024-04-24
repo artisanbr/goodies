@@ -11,14 +11,20 @@ use Illuminate\View\ComponentAttributeBag;
 
 class BladeComponentHelpers
 {
-    public static function getAttributesBagGroup(string $groupName, ComponentAttributeBag $attributes): ComponentAttributeBag
+    public static function getAttributesBagGroup(string|array $groupNames, ComponentAttributeBag $attributes): ComponentAttributeBag
     {
         $filteredAttributes = [];
 
+        if(!is_iterable($groupNames)){
+            $groupNames = [$groupNames];
+        }
+
+        $groupNames = collect($groupNames)->map(fn($name) => "{$name}-")->toArray();
+
         foreach ($attributes->getAttributes() as $key => $value) {
-            if (Str::startsWith($key, "{$groupName}-")) {
+            if (Str::startsWith($key, $groupNames)) {
                 // Remove the prefix from the attribute key
-                $filteredKey = Str::after($key, "{$groupName}-");
+                $filteredKey = str($key)->replace($groupNames, '');
                 $filteredAttributes[$filteredKey] = $value;
             }
         }
