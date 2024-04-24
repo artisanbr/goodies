@@ -6,6 +6,7 @@
 
 namespace ArtisanBR\Goodies\Support\Blade;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 
@@ -19,12 +20,13 @@ class BladeComponentHelpers
             $groupNames = [$groupNames];
         }
 
-        $groupNames = collect($groupNames)->map(fn($name) => "{$name}-")->toArray();
+        $groupNames = Collection::wrap($groupNames)->map(fn($name) => "{$name}-")->toArray();
 
         foreach ($attributes->getAttributes() as $attributeName => $attributeValue) {
 
             foreach ($groupNames as $groupName){
-                if (Str::startsWith($attributeName, $groupName . '-')) {
+
+                if (Str::startsWith($attributeName, $groupName)) {
                     $filteredAttributeName = Str::substr($attributeName, strlen($groupName) + 1);
                     $filteredAttributes[$filteredAttributeName] = $attributeValue;
                 }
