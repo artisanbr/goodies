@@ -1,7 +1,8 @@
 {
     "name": "artisanbr/goodies",
     "description": "Laravel/PHP goodies pack by Artisan Digital",
-    "type": "library",
+    "type": "package",
+    "version": "0.0.3",
     "require": {
         "php": "^8.1|^8.2|^8.3",
         "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",

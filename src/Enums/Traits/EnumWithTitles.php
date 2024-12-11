@@ -10,11 +10,9 @@ trait EnumWithTitles
         return self::getTitleTo($this);
     }
 
-    public static function getTitleTo($type): string
+    public static function getTitleTo(self $type): string
     {
-        return match ($type) {
-            default => 'Nenhum',
-        };
+        return __(str(str($type->name)->ucsplit()->implode(' '))->squish());
     }
 
     public static function titles(): array
