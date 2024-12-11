@@ -12,7 +12,7 @@ trait EnumWithTitles
 
     public static function getTitleTo(self $type): string
     {
-        return __(str(str($type->name)->ucsplit()->implode(' '))->squish());
+        return __(str(str($type->name)->ucsplit()->implode(' '))->squish()->toString());
     }
 
     public static function titles(): array
