@@ -45,7 +45,7 @@ class GoodiesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes(collect(File::allFiles(config_path()))
+        $this->publishes(collect(File::allFiles($this->config_path))
                              ->mapWithKeys(fn($file): array => [
                                  $file->getPathname() => config_path($file->getRelativePathname()),
                              ])->toArray());
