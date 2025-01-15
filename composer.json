@@ -24,5 +24,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/framework": "^11.33",
+        "laravel/tinker": "^2.10"
+    }
 }
