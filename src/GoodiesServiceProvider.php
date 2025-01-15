@@ -29,7 +29,7 @@ class GoodiesServiceProvider extends ServiceProvider
 
             if ($file->isFile() && $file->getExtension() === 'php') {
                 $this->mergeConfigFrom(
-                    $file->getPathname(), str($file->getRelativePathname())->replace('/', '.')->chopEnd('.php')->toString()
+                    $file->getPathname(), str($file->getRelativePathname())->replace('/', '.')->beforeLast('.php')->toString()
                 );
             }
 
