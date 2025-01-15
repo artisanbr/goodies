@@ -28,5 +28,12 @@
     "require-dev": {
         "laravel/framework": "^11.33",
         "laravel/tinker": "^2.10"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ArtisanBR\\Goodies\\GoodiesServiceProvider"
+            ]
+        }
     }
 }
