@@ -17,6 +17,7 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
 
+
 class GoodiesServiceProvider extends ServiceProvider
 {
 
@@ -51,7 +52,7 @@ class GoodiesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-                $this->macros();
+        $this->macros();
         $this->publishes(collect(File::allFiles($this->config_path))
                              ->mapWithKeys(fn($file): array => [
                                  $file->getPathname() => config_path($file->getRelativePathname()),
@@ -62,17 +63,17 @@ class GoodiesServiceProvider extends ServiceProvider
     protected function macros(){
         //Str
 
-        Stringable::macro('limitPath', function (string $path, int $keepFirst = 1, int $keepLast = 2, string $ellipsis = '...'): string {
-            $segments = explode('/', $path);
+        Stringable::macro('limitPath', function (int $keepFirst = 1, int $keepLast = 2, string $ellipsis = '...') {
+            $segments = explode('/', $this);
 
             if (count($segments) <= ($keepFirst + $keepLast)) {
-                return $path;
+                return $this;
             }
 
             $start = array_slice($segments, 0, $keepFirst);
             $end = array_slice($segments, -$keepLast);
 
-            return implode('/', [...$start, $ellipsis, ...$end]);
+            return Str::of(implode('/', [...$start, $ellipsis, ...$end]));
         });
 
         // region Eloquent Macros
